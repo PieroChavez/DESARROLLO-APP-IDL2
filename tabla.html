@@ -11,22 +11,31 @@
 
 </head>
 <body>
+    <div id="app">
+        <h1>Registro de Trabajadores en Continental</h1>
+    </div>
 
-<form id="workerForm">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" required>
-    <label for="puesto">Puesto:</label>
-    <input type="text" id="puesto" required>
-    <button type="button" onclick="agregarTrabajador()">Agregar Trabajador</button>
-</form>
-
-<table id="workersTable">
-    <tr>
-        <th>Nombre</th>
-        <th>Puesto</th>
-        <th>Acciones</th>
-    </tr>
-</table>
+    <form id="workerForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+    
+        <label for="puesto">Puesto:</label>
+        <input type="text" id="puesto" required>
+    
+        <label for="foto">Foto:</label>
+        <input type="file" id="foto">
+    
+        <button type="button" onclick="agregarTrabajador()">Agregar Trabajador</button>
+    </form>
+    
+    <table id="workersTable">
+        <tr>
+            <th>Nombre</th>
+            <th>Puesto</th>
+            <th>Foto</th>
+            <th>Acciones</th>
+        </tr>
+    </table>
 
 <script src="/index.js"></script>
 
