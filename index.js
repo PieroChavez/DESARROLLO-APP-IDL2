@@ -1,64 +1,40 @@
-function obtenerDatosFormulario() {
-    var id = $("#id").val();
-    var nombre = $("#nombre").val();
-    var apellido = $("#apellido").val();
-    var edad = $("#edad").val();
-    var curso = $("#curso").val();
-  
-    return {
-      id: id,
-      nombre: nombre,
-      apellido: apellido,
-      edad: edad,
-      curso: curso
-    };
-  }
-  
-  function procesarDatosFormulario(datos) {
-    var accion = $("#boton").val();
-  
-    if (accion == "Crear") {
-      // Crear al alumno
-      $.ajax({
-        type: "POST",
-        url: "/crud",
-        data: datos,
-        success: function(data) {
-          // Si la creación fue exitosa
-          if (data == "ok") {
-            // Mostrar un mensaje de éxito
-            alert("El alumno se creó correctamente.");
-          } else {
-            // Mostrar un mensaje de error
-            alert("Ocurrió un error al crear al alumno.");
-          }
+
+    function agregarTrabajador() {
+        var nombre = document.getElementById("nombre").value;
+        var puesto = document.getElementById("puesto").value;
+
+        if (nombre && puesto) {
+            var table = document.getElementById("workersTable");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+
+            cell1.innerHTML = nombre;
+            cell2.innerHTML = puesto;
+            cell3.innerHTML = '<button onclick="editarTrabajador(this)">Editar</button> ' +
+                              '<button onclick="eliminarTrabajador(this)">Eliminar</button>';
+
+            // Limpiar el formulario después de agregar un trabajador
+            document.getElementById("workerForm").reset();
+        } else {
+            alert("Por favor, ingresa todos los campos.");
         }
-      });
-    } else if (accion == "Editar") {
-      // Editar al alumno
-      $.ajax({
-        type: "PUT",
-        url: "/crud",
-        data: datos,
-        success: function(data) {
-          // Si la edición fue exitosa
-          if (data == "ok") {
-            // Mostrar un mensaje de éxito
-            alert("El alumno se editó correctamente.");
-          } else {
-            // Mostrar un mensaje de error
-            alert("Ocurrió un error al editar al alumno.");
-          }
-        }
-      });
     }
-  }
-  
-  $(document).ready(function() {
-    // Obtener los datos del formulario
-    var datos = obtenerDatosFormulario();
-  
-    // Procesar los datos
-    procesarDatosFormulario(datos);
-  });
-  
+
+    function editarTrabajador(btn) {
+        var row = btn.parentNode.parentNode;
+        var nombre = row.cells[0].innerHTML;
+        var puesto = row.cells[1].innerHTML;
+
+        document.getElementById("nombre").value = nombre;
+        document.getElementById("puesto").value = puesto;
+
+        // Eliminar la fila después de editar
+        row.parentNode.removeChild(row);
+    }
+
+    function eliminarTrabajador(btn) {
+        var row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
