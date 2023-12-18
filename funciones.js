@@ -1,4 +1,3 @@
-// Cargar trabajadores desde el almacenamiento local al cargar la página
 window.onload = function () {
     let storedWorkers = JSON.parse(localStorage.getItem("workers")) || [];
     storedWorkers.forEach(function (worker) {
@@ -12,7 +11,7 @@ function agregarTrabajador() {
     let foto = document.getElementById("foto").value;
 
     if (nombre && puesto) {
-        // Guardar trabajador en el almacenamiento local
+        // Guardar trabajador
         let worker = { nombre: nombre, puesto: puesto, foto: foto };
         let storedWorkers = JSON.parse(localStorage.getItem("workers")) || [];
         storedWorkers.push(worker);
@@ -21,7 +20,7 @@ function agregarTrabajador() {
         // Agregar trabajador a la tabla
         agregarFila(nombre, puesto, foto);
 
-        // Limpiar el formulario después de agregar un trabajador
+        // Limpiar el formulario 
         document.getElementById("workerForm").reset();
     } else {
         alert("Por favor, ingresa todos los campos.");
@@ -47,7 +46,7 @@ function editarTrabajador(btn) {
     let row = btn.parentNode.parentNode;
     let nombre = row.cells[0].innerHTML;
     let puesto = row.cells[1].innerHTML;
-    let foto = row.cells[2].innerHTML; // En este ejemplo, la URL de la foto se guarda directamente en la celda
+    let foto = row.cells[2].innerHTML;
 
     document.getElementById("nombre").value = nombre;
     document.getElementById("puesto").value = puesto;
@@ -73,7 +72,7 @@ function eliminarTrabajador(btn) {
 
 
 
-// Añadir evento change al campo de entrada de tipo file
+// Añadir evento change
 document.getElementById('foto').addEventListener('change', mostrarVistaPrevia);
 
 function mostrarVistaPrevia() {
